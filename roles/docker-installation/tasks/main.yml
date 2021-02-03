@@ -1,0 +1,38 @@
+---
+- name: Install Docker Dependencies
+  apt: name={{ item }} state=latest update_cache=yes
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
+    - openssl
+    - wget
+    - gcc
+    - python3-setuptools
+    - python3-dev
+    - python3-pip
+    - virtualenv
+  tags: docker
+
+- name: Get Docker key
+  apt_key:
+    url: https://download.docker.com/linux/debian/gpg
+    state: present
+  tags: docker
+
+- name: Add Docker packages to Repository
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/debian {{ ansible_lsb.codename|lower }} stable
+  tags: docker
+
+- name: Install Docker-CE
+  apt: name={{ item }}
+    state=latest
+    update_cache=yes
+  with_items:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+  tags: docker
+

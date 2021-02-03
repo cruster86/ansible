@@ -1,0 +1,19 @@
+- hosts: [clones]
+
+  tasks:
+  - name: apt update & upgrade
+    apt: name={{item}} state=latest update_cache=yes
+    with_items:
+      - mlocate
+      - htop
+      - nano
+      - net-tools
+      - wget
+      - curl
+  - name: Install Docker Dependencies
+    apt: name={{ item }} state=latest update_cache=yes
+    with_items:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common

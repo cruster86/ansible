@@ -1,0 +1,35 @@
+---
+#- name: service rm nginx
+#  shell: "docker service rm nginx"
+#  ignore_errors: true
+
+#- name: service create nginx
+#  shell: "docker service create --name nginx --replicas 2 --publish 8080:80 nginx"
+#  ignore_errors: true
+
+- name: Create a directory
+  file:
+    path: /home/deploy
+    state: directory
+
+- name: copy docker-compose file
+  copy:
+    src: /etc/ansible/docker-compose.yml
+    dest: /home/deploy 
+
+- name: stack remove
+  shell: "docker stack rm webstack"
+
+- name: Sleep for 15 seconds and continue
+  wait_for:
+    timeout: 15  
+
+- name: stack deploy
+  shell: "docker stack deploy --compose-file /home/deploy/docker-compose.yml webstack"
+
+#- name: Deploy stack from a compose file
+#  docker_stack:
+#    state: present
+#    name: webstack
+#    compose:
+#      - /home/deploy/docker-compose.yml

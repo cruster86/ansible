@@ -1,0 +1,14 @@
+- name: check nginx
+  service:
+    name: webstack_nginx
+    state: started
+
+- name: check mongo
+  service:
+    name: mongo
+    state: started
+
+- name: check redis
+  service:
+    name: redis
+    state: started

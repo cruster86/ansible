@@ -1,0 +1,12 @@
+#clones:
+#  hosts:
+#   clone1:
+#     ansible_port: 22
+#     ansible_host: 192.168.20.135
+#   clone2:
+#     ansible_port: 22
+#     ansible_host: 192.168.20.136
+
+#[clones]
+#clone1 
+#clone2 
