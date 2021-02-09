@@ -10,3 +10,13 @@
 #[clones]
 #clone1 
 #clone2 
+
+[docker-nodes]
+swarm-manager
+swarm-worker
+
+[swarm-managers]
+swarm-manager
+
+[swarm-workers]
+swarm-worker
