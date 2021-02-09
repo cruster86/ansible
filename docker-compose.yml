@@ -21,16 +21,5 @@ services:
     networks:
       - webstacknet
 
-  mongo:
-    image: "mongo:latest"
-    ports:
-      - "27017:27017"
-    deploy:
-      replicas: 2
-      restart_policy:
-        condition: on-failure
-    networks:
-      - webstacknet
-
 networks:
   webstacknet:
